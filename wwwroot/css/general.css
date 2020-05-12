@@ -20,6 +20,54 @@ body, html {
     bottom: 0;
 }
 
-p {
+h1, h2, h3, h4, h5, h6, p {
     margin: 12px 0;
+}
+
+h1 {
+    font-size: 42px;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+h3 {
+    font-size: 28px;
+}
+
+h4 {
+    font-size: 24px;
+}
+
+h5 {
+    font-size: 20px;
+}
+
+h6 {
+    font-size: 18px;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f8f8f8;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #e8e8e8;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #e2e2e2;
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: #dbdbdb;
+}
+
+.hidden {
+    display: none !important;
 }

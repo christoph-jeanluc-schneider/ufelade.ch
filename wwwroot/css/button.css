@@ -2,14 +2,14 @@
     outline: none;
     border: none;
     text-decoration: none;
-    display: inline-block;
+    display: block;
     position: relative;
     padding: 6px 18px;
-    background-color: #e0e0e0;
-    color: #505050;
+    background-color: #65ca65;
+    color: white;
     border-radius: 4px;
     cursor: pointer;
 }
 .button:active {
-    background-color: #dcdcdc;
+    background-color: #70d370;
 }

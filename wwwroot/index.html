@@ -5,9 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Ufelade!</title>
         <link rel="stylesheet" href="/css/index.css">
+        <link rel="stylesheet" href="/fontawesome/min.css">
+        <script src="/common/spark-md5.min.js"></script>
+        <script src="/common/axios.min.js"></script>
     </head>
     <body>
-        <div class="window scores">
+        <div class="window scroreboard">
             <div class="window-header">Ranglischtä</div>
             <div class="window-body">
                 <p>Lorem Ipsum Doloooooooooooooooor</p>
@@ -15,25 +18,32 @@
                 <p>Lorem Ipsum Dolor</p>
             </div>
         </div>
-        <div class="window main">
+        <div class="window upload">
             <div class="window-header">Ufelade!</div>
             <div class="window-body">
-                <p>Lorem Ipsum Dolor</p>
-                <p>Lorem Ipsum Dolor</p>
-                <p>Lorem Ipsum Dolor</p>
-                <p>Lorem Ipsum Dolor</p>
-                <button class="button">ufelade</button>
+                <p>Ladt so viel <b>Bytes</b> wie müglech ufe!</p>
+                <p class="error-message" id="error-message"></p>
+                <div class="history" id="history"></div>
+                <div class="progress-canvas">
+                    <progress id="progress" min=0></progress>
+                </div>
+                <button class="button" id="upload-button">
+                    <span class="fa fa-upload"> &nbsp; </span>
+                    Datei uuswählä
+                </button>
+                <input type="file" id="fileinput" style="display: none;">
             </div>
         </div>
-        <div class="window me">
+        <div class="window score">
             <div class="window-header">Level</div>
             <div class="window-body">
-                <p>Lorem Ipsum Doloooooooooooooooor</p>
-                <p>Lorem Ipsum Dolor</p>
-                <p>Lorem Ipsum Dolor</p>
+                <h5 id="username-header"></h5>
+                <p>Score...</p>
             </div>
         </div>
         <script src="/js/windows.js"></script>
-        <script src="/js/game.js"></script>
+        <script src="/js/scroreboard.js"></script>
+        <script src="/js/upload.js"></script>
+        <script src="/js/score.js"></script>
     </body>
 </html>
