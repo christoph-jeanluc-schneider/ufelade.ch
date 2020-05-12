@@ -1,0 +1,50 @@
+.window {
+    display: inline-block;
+    position: fixed;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    padding: 0 4px 4px 4px;
+    min-width: 300px;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.03);
+    opacity: 1;
+    transition: opacity 0.2s;
+}
+
+.window.scores {
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+}
+
+.window.main {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.window.me {
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+}
+
+.window.active {
+    z-index: 20;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.07);
+}
+
+.window-header {
+    display: block;
+    padding: 14px 12px;
+    color: #505050;
+}
+
+.window-body {
+    background-color: white;
+    border-radius: 4px;
+    padding: 12px;
+}
+
+.window-body * {
+    color: #303030;
+}
