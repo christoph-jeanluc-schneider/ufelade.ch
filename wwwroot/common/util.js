@@ -12,7 +12,7 @@ function format_number( number ) {
 function format_bytes( bytes, decimals = 0 ) {
     if( bytes === 0 ) return '0 Bytes';
 
-    const k = 1024;
+    const k = 1000;
     const dm = decimals < 0 ? 0 : decimals;
     const sizes = [ 'Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB', '&#8734;', '&#8734;', '&#8734;', '&#8734;', '&#8734;', '&#8734;', '&#8734;', '&#8734;' ];
 
