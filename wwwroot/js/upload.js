@@ -91,6 +91,7 @@ function upload_animaion( value, max, filename ) {
         } )
             .then( function ( res ) {
                 history.innerHTML += `<p>${filename}</p>`;
+                history.scrollTop = 999999999999999;
             } )
             .catch( function ( err ) {
                 console.error( err );
@@ -117,8 +118,10 @@ function load_history( username ) {
             if( res.data.score )
                 update_score( res.data.score );
 
-            if( res.data.files && res.data.files.length > 0 )
+            if( res.data.files && res.data.files.length > 0 ) {
                 history.innerHTML = `<p>${res.data.files.join( '</p><p>' )}</p>`;
+                history.scrollTop = 999999999999999;
+            }
         } )
         .catch( function ( err ) {
             console.error( err );
@@ -126,6 +129,7 @@ function load_history( username ) {
 }
 
 function goto_progress_state() {
+    uploading = true;
     progress_upload.classList.add( 'active' );
     progress_hash.classList.add( 'active' );
     progress_upload.value = 0;
@@ -134,6 +138,7 @@ function goto_progress_state() {
 }
 
 function goto_default_state() {
+    uploading = false;
     progress_upload.classList.remove( 'active' );
     progress_hash.classList.remove( 'active' );
     progress_upload.value = 0;
