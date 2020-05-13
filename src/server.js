@@ -28,6 +28,10 @@ app.post( '/upload', ( req, res ) => {
     res.sendStatus( 200 );
 } );
 
-app.get( '/scores', ( req, res ) => {
-    res.send( scores.get() );
+app.get( '/scoreboard/:timestamp', ( req, res ) => {
+    res.json( scores.get() );
+} );
+
+app.get( '/score/:username/:timestamp', ( req, res ) => {
+    res.json( scores.get( req.params.username ) );
 } );

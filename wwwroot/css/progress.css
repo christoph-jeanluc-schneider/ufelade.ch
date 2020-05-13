@@ -6,7 +6,7 @@
 
 progress {
     display: block;
-    width: 100%;
+    width: 101%;
     height: 8px;
     -webkit-appearance: none;
     appearance: none;
@@ -23,4 +23,8 @@ progress::-webkit-progress-bar {
 
 progress::-webkit-progress-value {
     background-color: #5daeff;
+}
+
+progress#progress-hash::-webkit-progress-value {
+    background-color: #65ca65;
 }

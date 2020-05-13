@@ -4,7 +4,8 @@ var path = require( 'path' );
 const scores_filename = path.join( __dirname, '../data/scores.json' );
 var scores = require( '../data/scores.json' );
 
-exports.get = () => {
+exports.get = (username) => {
+    if( username ) return scores[ username ];
     return scores;
 };
 

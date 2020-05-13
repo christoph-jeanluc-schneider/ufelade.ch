@@ -4,18 +4,20 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Ufelade!</title>
+        <link rel="shortcut icon" href="/ufelade.png" type="image/png">
         <link rel="stylesheet" href="/css/index.css">
         <link rel="stylesheet" href="/fontawesome/min.css">
         <script src="/common/spark-md5.min.js"></script>
         <script src="/common/axios.min.js"></script>
+        <script src="/common/util.js"></script>
     </head>
     <body>
         <div class="window scroreboard">
             <div class="window-header">Ranglischtä</div>
             <div class="window-body">
-                <p>Lorem Ipsum Doloooooooooooooooor</p>
-                <p>Lorem Ipsum Dolor</p>
-                <p>Lorem Ipsum Dolor</p>
+                <table>
+                    <tbody id="scoreboard"></tbody>
+                </table>
             </div>
         </div>
         <div class="window upload">
@@ -25,7 +27,10 @@
                 <p class="error-message" id="error-message"></p>
                 <div class="history" id="history"></div>
                 <div class="progress-canvas">
-                    <progress id="progress" min=0></progress>
+                    <progress id="progress-hash" min=0></progress>
+                </div>
+                <div class="progress-canvas">
+                    <progress id="progress-upload" min=0></progress>
                 </div>
                 <button class="button" id="upload-button">
                     <span class="fa fa-upload"> &nbsp; </span>
@@ -35,10 +40,10 @@
             </div>
         </div>
         <div class="window score">
-            <div class="window-header">Level</div>
+            <div class="window-header" id="username-header"></div>
             <div class="window-body">
-                <h5 id="username-header"></h5>
-                <p>Score...</p>
+                <p id="my-score">0 Bytes</p>
+                <p id="my-score-formated">0 Bytes</p>
             </div>
         </div>
         <script src="/js/windows.js"></script>
