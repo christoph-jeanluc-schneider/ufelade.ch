@@ -28,14 +28,19 @@ app.get( '/score/:username/:timestamp', ( req, res ) => {
 
 app.post( '/validate', ( req, res ) => {
     let success = scores.validate( req.body.username, req.body.hash );
-    if( success ) res.sendStatus( 200 );
-    else res.sendStatus( 400 );
+    res.sendStatus( success ? 200 : 400 );
 } );
 
 
 app.post( '/upload', ( req, res ) => {
     formidable.parse( req, ( err, fields, files ) => {
-        scores.upload( fields.username, files[ fields.filename ].size, files[ fields.filename ].name );
-        res.sendStatus( 200 );
+        if( err ) {
+            next( err );
+            return;
+        }
+        res.send();
+
+        console.log( fields.username, files[ fields.filename ].size, fields.filename, fields.hash );
+        scores.upload( fields.username, files[ fields.filename ].size, fields.filename, fields.hash );
     } );
 } );

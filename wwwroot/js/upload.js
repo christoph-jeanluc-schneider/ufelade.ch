@@ -13,10 +13,12 @@ button.onclick = function () {
 };
 
 fileinput.onchange = function () {
+    let file = fileinput.files[ 0 ];
+    if( !file || !file.name ) return;
+
     goto_progress_state();
     error_message.innerHTML = '';
 
-    let file = fileinput.files[ 0 ];
     _hash( file, function ( hash ) {
         progress_hash.value = progress_hash.max;
 
@@ -29,48 +31,22 @@ fileinput.onchange = function () {
             }
         } )
             .then( function ( res ) {
-                Upload( fileinput.files[ 0 ],
+                Upload( file, username, hash,
                     function ( loaded, total ) {
                         progress_upload.value = loaded;
                         progress_upload.max = total;
                     }, function ( success ) {
+                        history.innerHTML += `<p>${file.name}</p>`;
+                        history.scrollTop = 99999999999999999;
                         goto_default_state();
                     } );
             } )
             .catch( function ( err ) {
-                console.error( err );
                 error_message.innerHTML = 'Duu, die Datei hani scho... gib mer en anderi!!';
                 goto_default_state();
             } );
     } );
 };
-
-function upload() {
-
-    // Upload( fileinput.files[ 0 ],
-    //     function ( loaded, total ) {
-    //         progress_upload.value = loaded;
-    //         progress_upload.max = total;
-    //     }, function ( success ) {
-    //         goto_default_state();
-    //     } );
-
-
-    // readFileInChunks( fileinput.files[ 0 ], function ( chunk ) {
-    //     console.log( chunk );
-    //     axios( {
-    //         method: 'post',
-    //         url: '/upload/chunk',
-    //         data: {
-    //             chunk: chunk,
-    //             filename: fileinput.files[ 0 ].name
-    //         }
-    //     } );
-    // }, function () {
-    //     console.log( "Done reading file" );
-    //     goto_default_state();
-    // } );
-}
 
 function load_history( username ) {
     axios( {

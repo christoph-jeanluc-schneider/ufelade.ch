@@ -58,52 +58,12 @@ function _hash( file, callback ) {
     loadNext();
 }
 
-// yes, i copied this from https://stackoverflow.com/a/28318964 
-// function readFileInChunks( file, onChunkReady, resolve ) {
-//     var fileSize = file.size;
-//     var chunkSize = 1024; // bytes
-//     var offset = 0;
-//     var self = this; // we need a reference to the current object
-//     var chunkReaderBlock = null;
-
-//     var readEventHandler = function ( evt ) {
-//         console.log( evt.target.result );
-
-//         if( evt.target.error == null ) {
-//             offset += chunkSize;
-//             onChunkReady( evt.target.result ); // callback for handling read chunk
-//         } else {
-//             console.log( "Read error: " + evt.target.error );
-//             return;
-//         }
-//         if( offset >= fileSize ) {
-//             resolve();
-//             return;
-//         }
-
-//         // of to the next chunk
-//         chunkReaderBlock( offset, chunkSize, file );
-//     }
-
-//     chunkReaderBlock = function ( _offset, length, _file ) {
-//         var r = new FileReader();
-//         var blob = _file.slice( _offset, length + _offset );
-//         r.onload = readEventHandler;
-//         // r.readAsText( blob );
-//         r.readAsArrayBuffer( blob );
-//     }
-
-//     // now let's start the read with the first block
-//     chunkReaderBlock( offset, chunkSize, file );
-// }
-
-
-// UPLOAD
-function Upload( file, onProgress, onComplete ) {
+function Upload( file, user, hash, onProgress, onComplete ) {
     var formData = new FormData();
     formData.append( file.name, file );
-    formData.append( 'username', username );
+    formData.append( 'username', user );
     formData.append( 'filename', file.name );
+    formData.append( 'hash', hash );
 
     var xhr = new XMLHttpRequest();
     xhr.open( 'post', '/upload', true );
