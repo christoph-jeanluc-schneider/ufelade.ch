@@ -8,7 +8,7 @@
     width: 100%;
 }
 
-.window.scroreboard table tbody {
+.window.scroreboard .window-body {
     max-height: 252px;
     overflow-y: auto;
 }
