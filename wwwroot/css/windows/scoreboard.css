@@ -8,6 +8,11 @@
     width: 100%;
 }
 
+.window.scroreboard table tbody {
+    max-height: 252px;
+    overflow-y: auto;
+}
+
 .window.scroreboard table td {
     padding-left: 12px;
     text-align: right;

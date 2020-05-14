@@ -34,7 +34,7 @@ function display_scoreboard( scores ) {
     } );
 
     scoreboard_body.innerHTML = '';
-    for( let i = 0; i < scoreboard.length && i < 10; i++ ) {
+    for( let i = 0; i < scoreboard.length i++ ) {
         scoreboard_body.innerHTML += `<tr><td>${scoreboard[ i ].username}</td>`
             + `<td>${format_bytes( Number( scoreboard[ i ].score ) )}</td>`
             + `<td>${format_number( scoreboard[ i ].score )} Bytes</td></tr>`;
