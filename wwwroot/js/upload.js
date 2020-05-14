@@ -18,6 +18,8 @@ fileinput.onchange = function () {
 
     let file = fileinput.files[ 0 ];
     _hash( file, function ( hash ) {
+        progress_hash.value = progress_hash.max;
+
         axios( {
             method: 'post',
             url: '/validate',
@@ -27,8 +29,13 @@ fileinput.onchange = function () {
             }
         } )
             .then( function ( res ) {
-                progress_upload.max = file.size;
-                upload_animaion( 0, file.size, file.name );
+                Upload( fileinput.files[ 0 ],
+                    function ( loaded, total ) {
+                        progress_upload.value = loaded;
+                        progress_upload.max = total;
+                    }, function ( success ) {
+                        goto_default_state();
+                    } );
             } )
             .catch( function ( err ) {
                 console.error( err );
@@ -38,75 +45,31 @@ fileinput.onchange = function () {
     } );
 };
 
-function _hash( file, callback ) {
-    var blobSlice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice,
-        chunkSize = 2097152,
-        chunks = Math.ceil( file.size / chunkSize ),
-        currentChunk = 0,
-        spark = new SparkMD5.ArrayBuffer(),
-        fileReader = new FileReader();
+function upload() {
 
-    progress_hash.max = chunks;
+    // Upload( fileinput.files[ 0 ],
+    //     function ( loaded, total ) {
+    //         progress_upload.value = loaded;
+    //         progress_upload.max = total;
+    //     }, function ( success ) {
+    //         goto_default_state();
+    //     } );
 
-    fileReader.onload = function ( e ) {
-        console.debug( `hashing chunk ${currentChunk} of ${chunks} in total...` );
-        progress_hash.value = currentChunk;
 
-        spark.append( e.target.result );
-        currentChunk++;
-
-        if( currentChunk < chunks ) loadNext();
-        else callback( spark.end() );
-    };
-
-    fileReader.onerror = function ( err ) {
-        console.error( err );
-        error_message.innerHTML = 'Ah fuck, irgeepis het nid funktioniert... sorry.<br>Drück schnäll "F5" uf dr Tastatur zum dSiitä nöi ladä!';
-        goto_default_state();
-    };
-
-    function loadNext() {
-        var start = currentChunk * chunkSize,
-            end = ( ( start + chunkSize ) >= file.size ) ? file.size : start + chunkSize;
-
-        fileReader.readAsArrayBuffer( blobSlice.call( file, start, end ) );
-    }
-
-    loadNext();
-}
-
-function upload_animaion( value, max, filename ) {
-    console.debug( `upload: ${value} / ${max} )` );
-    progress_upload.value = value;
-
-    if( value >= max ) {
-        axios( {
-            method: 'post',
-            url: '/upload',
-            data: {
-                username: username,
-                bytes: max,
-                filename: filename
-            }
-        } )
-            .then( function ( res ) {
-                history.innerHTML += `<p>${filename}</p>`;
-                history.scrollTop = 999999999999999;
-            } )
-            .catch( function ( err ) {
-                console.error( err );
-                error_message.innerHTML = 'Ah fuck, irgeepis het nid funktioniert... sorry.<br>Drück schnäll "F5" uf dr Tastatur zum dSiitä nöi ladä!';
-            } )
-            .then( function () {
-                goto_default_state();
-            } );
-        return;
-    }
-
-    setTimeout( function () {
-        value += upload_step_size;
-        upload_animaion( value, max, filename );
-    }, upload_timeout );
+    // readFileInChunks( fileinput.files[ 0 ], function ( chunk ) {
+    //     console.log( chunk );
+    //     axios( {
+    //         method: 'post',
+    //         url: '/upload/chunk',
+    //         data: {
+    //             chunk: chunk,
+    //             filename: fileinput.files[ 0 ].name
+    //         }
+    //     } );
+    // }, function () {
+    //     console.log( "Done reading file" );
+    //     goto_default_state();
+    // } );
 }
 
 function load_history( username ) {
