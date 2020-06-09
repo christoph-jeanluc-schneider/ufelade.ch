@@ -22,9 +22,9 @@ function setup() {
 
 function draw() {
     if( uploading )
-        background( 255, 180 );
+        background( 0, 180 );
     else
-        background( 255, 60 );
+        background( 0, 60 );
 
     for( let i in particles )
         particles[ i ].draw();
@@ -46,7 +46,7 @@ class Particle {
         if( this.pos.y < 0 ) this.pos.y = vh;
 
         noFill();
-        stroke( 204, 230, 255 );
+        stroke( 255 );
         strokeWeight( 1 );
         if( uploading )
             line( this.pos.x, this.pos.y, this.pos.x, this.pos.y + this.size );

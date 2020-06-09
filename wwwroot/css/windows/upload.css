@@ -1,8 +1,9 @@
 .window.upload {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px;
+    grid-row: span 2;
+    /* top: 50%; */
+    /* left: 50%; */
+    /* transform: translate(-50%, -50%); */
+    /* width: 600px; */
 }
 
 .window.upload .error-message {
@@ -11,10 +12,14 @@
 }
 
 .window.upload .history {
-    height: 160px;
+    height: calc(100vh - 200px);
     overflow-y: auto;
-    border: 1px solid #f8f8f8;
+    border: 1px solid #555;
     padding: 0 12px;
     margin-top: 24px;
     color: #65ca65;
+}
+
+.window.upload .button {
+    margin-top: 16px;
 }

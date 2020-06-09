@@ -1,9 +1,9 @@
 .window.score {
-    top: 50%;
-    left: calc(100vw - 12px);
-    transform: translate(-100%, -50%);
+    /* top: 50%; */
+    /* left: calc(100vw - 12px); */
+    /* transform: translate(-100%, -50%); */
 }
 
 .window.score .window-body {
-    text-align: right;
+    /* text-align: right; */
 }

@@ -13,38 +13,40 @@
         <script src="/common/util.js"></script>
     </head>
     <body>
-        <div class="window scroreboard">
-            <div class="window-header">Ranglischtä</div>
-            <div class="window-body">
-                <table>
-                    <tbody id="scoreboard"></tbody>
-                </table>
-            </div>
-        </div>
-        <div class="window upload">
-            <div class="window-header">Ufelade!</div>
-            <div class="window-body">
-                <p>Ladt so viel <b>Bytes</b> wie müglech ufe!</p>
-                <p class="error-message" id="error-message"></p>
-                <div class="history" id="history"></div>
-                <div class="progress-canvas">
-                    <progress id="progress-hash" min=0></progress>
+        <div class="grid">
+            <div class="window upload">
+                <div class="window-header">Ufelade!</div>
+                <div class="window-body">
+                    <p>Ladt so viel <b>Bytes</b> wie müglech ufe!</p>
+                    <p class="error-message" id="error-message"></p>
+                    <div class="history" id="history"></div>
+                    <button class="button" id="upload-button">
+                        <span class="fa fa-upload"> &nbsp; </span>
+                        Datei uuswählä
+                    </button>
+                    <input type="file" id="fileinput" style="display: none;">
+                    <div class="progress-canvas">
+                        <progress id="progress-hash" min=0></progress>
+                    </div>
+                    <div class="progress-canvas">
+                        <progress id="progress-upload" min=0></progress>
+                    </div>
                 </div>
-                <div class="progress-canvas">
-                    <progress id="progress-upload" min=0></progress>
-                </div>
-                <button class="button" id="upload-button">
-                    <span class="fa fa-upload"> &nbsp; </span>
-                    Datei uuswählä
-                </button>
-                <input type="file" id="fileinput" style="display: none;">
             </div>
-        </div>
-        <div class="window score">
-            <div class="window-header" id="username-header"></div>
-            <div class="window-body">
-                <p id="my-score">0 Bytes</p>
-                <p id="my-score-formated">0 Bytes</p>
+            <div class="window score">
+                <div class="window-header" id="username-header"></div>
+                <div class="window-body">
+                    <p id="my-score">0 Bytes</p>
+                    <p id="my-score-formated">0 Bytes</p>
+                </div>
+            </div>
+            <div class="window scroreboard">
+                <div class="window-header">Ranglischtä</div>
+                <div class="window-body">
+                    <table>
+                        <tbody id="scoreboard"></tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <script src="/js/background.js"></script>

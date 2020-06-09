@@ -1,19 +1,16 @@
-.window.scroreboard {
-    top: 50%;
-    left: 12px;
-    transform: translateY(-50%);
-}
-
 .window.scroreboard table {
     width: 100%;
 }
 
 .window.scroreboard .window-body {
-    max-height: 252px;
+    max-height: calc(100vh - 252px);
+    margin-top: 16px;
     overflow-y: auto;
 }
 
 .window.scroreboard table td {
+    padding-top: 4px;
+    padding-bottom: 4px;
     padding-left: 12px;
     text-align: right;
 }
