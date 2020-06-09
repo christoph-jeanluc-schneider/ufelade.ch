@@ -71,8 +71,8 @@ function goto_progress_state() {
     uploading = true;
     progress_upload.classList.add( 'active' );
     progress_hash.classList.add( 'active' );
-    progress_upload.classList.remove( 'hidden' );
-    progress_hash.classList.remove( 'hidden' );
+    progress_upload.parentNode.classList.remove( 'hidden' );
+    progress_hash.parentNode.classList.remove( 'hidden' );
     progress_upload.value = 0;
     progress_hash.value = 0;
     button.classList.add( 'hidden' );
@@ -82,8 +82,8 @@ function goto_default_state() {
     uploading = false;
     progress_upload.classList.remove( 'active' );
     progress_hash.classList.remove( 'active' );
-    progress_upload.classList.add( 'hidden' );
-    progress_hash.classList.add( 'hidden' );
+    progress_upload.parentNode.classList.add( 'hidden' );
+    progress_hash.parentNode.classList.add( 'hidden' );
     progress_upload.value = 0;
     progress_hash.value = 0;
     button.classList.remove( 'hidden' );
