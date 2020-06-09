@@ -22,13 +22,11 @@ function load_scoreboard() {
 function display_scoreboard( scores ) {
     let scoreboard = [];
 
-    for( let i = 0; i < 100; i++ ) {
-        for( let username in scores ) {
-            scoreboard.push( {
-                username: username,
-                score: scores[ username ].score
-            } );
-        }
+    for( let username in scores ) {
+        scoreboard.push( {
+            username: username,
+            score: scores[ username ].score
+        } );
     }
 
     scoreboard.sort( function ( a, b ) {

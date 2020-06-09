@@ -58,7 +58,7 @@ function load_history( username ) {
                 update_score( res.data.score );
 
             if( res.data.files && res.data.files.length > 0 ) {
-                history.innerHTML = `<p>${res.data.files.join( '</p><p>' )}</p>`;
+                history.innerHTML = `<p>${res.data.files.split( ';' ).join( '</p><p>' )}</p>`;
                 history.scrollTop = 999999999999999;
             }
         } )

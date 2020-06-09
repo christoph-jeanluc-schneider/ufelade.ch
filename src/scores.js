@@ -1,25 +1,38 @@
-var fs = require( 'fs' );
-var path = require( 'path' );
-
-const scores_filename = path.join( __dirname, '../data/scores.json' );
-var scores = require( '../data/scores.json' );
+var database = require( './db.js' );
 
 exports.get = ( username ) => {
-    if( username ) return scores[ username ];
-    return scores;
+    if( username ) {
+        let player = database.get( username );
+        return !!player ? player : {};
+    }
+    return database.getAll();
 };
 
 exports.validate = ( username, hash ) => {
-    return !scores[ username ] || !scores[ username ].hashes || scores[ username ].hashes.indexOf( hash ) == -1;
+    let entry = database.get( username );
+
+    if( !entry || !entry.username || entry.username.trim() == "" ) {
+        database.insert( username );
+        return true;
+    } else {
+        return !entry.hashes || entry.hashes.indexOf( hash ) == -1;
+    }
 };
 
 exports.upload = ( username, bytes, filename, hash ) => {
-    if( !scores[ username ] )
-        scores[ username ] = { score: 0, files: [], hashes: [] };
+    let entry = database.get( username );
 
-    scores[ username ].score += bytes, filename;
-    scores[ username ].files.push( filename );
-    scores[ username ].hashes.push( hash );
+    if( !entry ) return;
 
-    fs.writeFile( scores_filename, JSON.stringify( scores, null, 4 ), function () { } );
+    database.update.score( username, Number( entry.score) + Number( bytes) );
+
+    if( entry.files && typeof entry.files == "string" )
+        database.update.files( username, `${entry.files};${filename}` );
+    else
+        database.update.files( username, filename );
+
+    if( entry.hashes && typeof entry.hashes == "string" )
+        database.update.hashes( username, `${entry.hashes};${hash}` );
+    else
+        database.update.hashes( username, hash );
 };
