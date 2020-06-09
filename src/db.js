@@ -25,7 +25,7 @@ exports.init = () => {
     db.exec( init_query );
 
     queries = {
-        getAll: db.prepare( "SELECT * FROM player" ),
+        getAll: db.prepare( "SELECT * FROM player ORDER BY score DESC" ),
         get: db.prepare( "SELECT * FROM player WHERE username = ?" ),
         insert: db.prepare( "INSERT INTO player (username, score, files, hashes) VALUES (?, ?, ?, ?)" ),
         update_score: db.prepare( "UPDATE player SET score = ? WHERE username = ?" ),

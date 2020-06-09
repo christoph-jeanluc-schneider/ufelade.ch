@@ -20,23 +20,11 @@ function load_scoreboard() {
 }
 
 function display_scoreboard( scores ) {
-    let scoreboard = [];
-
-    for( let username in scores ) {
-        scoreboard.push( {
-            username: username,
-            score: scores[ username ].score
-        } );
-    }
-
-    scoreboard.sort( function ( a, b ) {
-        return a.score > b.score ? -1 : 1;
-    } );
-
     scoreboard_body.innerHTML = '';
-    for( let i = 0; i < scoreboard.length; i++ ) {
-        scoreboard_body.innerHTML += `<tr><td>${scoreboard[ i ].username}</td>`
-            + `<td>${format_bytes( Number( scoreboard[ i ].score ) )}</td>`
-            + `<td>${format_number( scoreboard[ i ].score )} Bytes</td></tr>`;
+    
+    for( let i = 0; i < scores.length; i++ ) {
+        scoreboard_body.innerHTML += `<tr><td>${scores[ i ].username}</td>`
+            + `<td>${format_bytes( Number( scores[ i ].score ) )}</td>`
+            + `<td>${format_number( scores[ i ].score )} Bytes</td></tr>`;
     }
 }

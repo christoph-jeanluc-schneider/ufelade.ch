@@ -46,11 +46,14 @@ class Particle {
         if( this.pos.y < 0 ) this.pos.y = vh;
 
         noFill();
-        stroke( 255 );
         strokeWeight( 1 );
-        if( uploading )
+
+        if( uploading ) {
+            stroke( 40, 120, 140 );
             line( this.pos.x, this.pos.y, this.pos.x, this.pos.y + this.size );
-        else
+        } else {
+            stroke( 0, 80, 80 );
             line( this.pos.x, this.pos.y, this.pos.x, this.pos.y + this.size / K * 10 );
+        }
     }
 }

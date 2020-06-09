@@ -2,7 +2,14 @@
     grid-row: span 2;
 }
 
+.window.upload .window-body {
+    position: relative;
+}
+
 .window.upload .error-message {
+    position: absolute;
+    top: -36px;
+    right: 0;
     color: #ff5757;
     font-weight: bold;
 }
@@ -30,5 +37,12 @@
     .window.upload .history p {
         font-size: 10px;
         margin: 4px 0;
+    }
+
+    .window.upload .error-message {
+        top: -12px;
+        padding: 8px;
+        border-radius: 3px;
+        background-color: rgba(127, 80, 80);
     }
 }
