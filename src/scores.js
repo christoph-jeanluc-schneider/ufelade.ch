@@ -22,7 +22,7 @@ exports.validate = ( username, hash ) => {
 exports.upload = ( username, bytes, filename, hash ) => {
     let entry = database.get( username );
 
-    if( !entry ) return;
+    if( !entry || entry.hashes.indexOf( hash ) >= 0 ) return;
 
     database.update.score( username, Number( entry.score) + Number( bytes) );
 
